@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@layer base {
+    :root {
+        --body-color: #131519;
+        --container-color: #1C1E22;
+        --title-color: #CBDAF6;
+    }
+}
+
+.block-div {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--body-color);
+    /* Rought CSS */
+    font-size: 10px;
+    color: #fff;
+}
+.freeze-div {
+    width: 20px;
+    height: 20px;
+    background-color: !transparent;
+}
+

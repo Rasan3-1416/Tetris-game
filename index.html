@@ -5,24 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tetris Game</title>
     <!-- Style File Link -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./assets/css/tailwind.css">
 </head>
-<body>
-    <div class="header-block">
-        <h3 class="score-text">
-            Score: <span id="score-number">0</span>
-        </h3>
-        <button class="btn" id="start-btn">
-            <img class="ctrl-icon" src="./src/img/pause.png" alt="">
-        </button>
-    </div>
+<body class="bg-c-body">
+    <section class="max-w-[300px] h-[100vh] mx-auto py-2">
 
-    <div  class="root-block"></div>
+        <!-- Header -->
+        <div class="text-center mb-4">
+            <h1 class="text-c-title text-[2.5rem] font-semibold">Tetris Game</h1>
+        </div>
 
-    <div class="ctrl-block"></div>
+        <!-- Root Main Area -->
+        <div  class="grid grid-cols-[repeat(12,1fr)]">
+
+            <!-- Root View Area -->
+            <div class="col-[1/9] bg-c-container flex flex-wrap h-[400px]" id="root-view"></div>
+
+            <!-- Root Side Area -->
+            <div class="col-[9/-1] flex flex-col items-center">
+                <span class="text-[1.5rem] font-semibold text-c-title mb-2">Next</span>
+
+                <!-- Next Shape View -->
+                <div class="grid grid-cols-[repeat(4,1fr)] bg-c-container mb-2" id="next-shape"></div>
+
+                <!-- Player Score -->
+                <h3 class="text-[1.25rem] text-c-title font-semibold mb-2" id="player-score">Score: 0</h3>
+
+                <!-- Level -->
+                <h3 class="text-[1.25rem] text-c-title font-semibold mb-2">Level: 0</h3>
+
+                <!-- Play/Pause Button -->
+                <button class="mt-4" id="start-btn">
+                    <img class="w-[40px] h-auto" src="./src/img/pause.png" id="btn-img" alt="Btn Icon">
+                </button>
+            </div>
+        </div>
+
+        <!-- Control Area -->
+        <div class="w-[200px] flex justify-between mt-6">
+            <button type="button" id="left">
+                <img class="w-[40px]" src="./src/img/left.png" alt="left control img">
+            </button>
+            <button type="button" id="down">
+                <img class="w-[40px]" src="./src/img/down.png" alt="down control img">
+            </button>
+            <button type="button" id="right">
+                <img class="w-[40px]" src="./src/img/right.png" alt="right control img">
+            </button>
+            <button type="button" id="rotate">
+                <img class="w-[40px]" src="./src/img/redo.png" alt="rotate control img">
+            </button>
+        </div>
+    </section>
 
 
     <!-- Script File Link -->
-    <script src="./script.js"></script>
+    <script src="./src/js/script.js"></script>
 </body>
 </html>

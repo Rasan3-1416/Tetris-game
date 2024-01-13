@@ -1,0 +1,23 @@
+{
+  "name": "tetris-game",
+  "version": "1.0.0",
+  "description": "This is a javaScript based web game built using html5, css3, tailwindcss and javaScript.",
+  "main": "index.html",
+  "scripts": {
+    "build-tail-css": "tailwindcss -i ./src/css/styles.css -o ./assets/css/tailwind.css --watch",
+    "minify-tail-css": "tailwindcss -i ./src/css/styles.css -o ./assets/css/tailwind.css --watch --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rasan3-1416/Tetris-game.git"
+  },
+  "author": "Md. Rakib Hasan <md.rakibhasan3.1416@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rasan3-1416/Tetris-game/issues"
+  },
+  "homepage": "https://github.com/Rasan3-1416/Tetris-game#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
