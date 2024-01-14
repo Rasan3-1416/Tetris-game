@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./assets/css/tailwind.css">
 </head>
 <body class="bg-c-body">
-    <section class="max-w-[300px] h-[100vh] mx-auto py-2">
+    <section class="max-w-[320px] h-[100vh] mx-auto py-2">
 
         <!-- Header -->
         <div class="text-center mb-4">
@@ -16,33 +16,44 @@
         </div>
 
         <!-- Root Main Area -->
-        <div  class="grid grid-cols-[repeat(12,1fr)]">
+        <div  class="w-[320px] flex gap-x-[20px]">
 
             <!-- Root View Area -->
-            <div class="col-[1/9] bg-c-container flex flex-wrap h-[400px]" id="root-view"></div>
+            <div class="w-[200px] bg-c-container flex flex-wrap h-[400px]" id="root-view"></div>
 
             <!-- Root Side Area -->
-            <div class="col-[9/-1] flex flex-col items-center">
+            <div class="w-[100px] flex flex-col">
+                <!-- Play/Pause Button -->
+                <button class="mb-2" id="start-btn">
+                    <img class="w-[40px] h-auto" src="./src/img/pause.png" id="btn-img" alt="Btn Icon">
+                </button>
+
                 <span class="text-[1.5rem] font-semibold text-c-title mb-2">Next</span>
 
                 <!-- Next Shape View -->
-                <div class="grid grid-cols-[repeat(4,1fr)] bg-c-container mb-2" id="next-shape"></div>
+                <div class="w-[80px] grid grid-cols-[repeat(4,1fr)] bg-c-container mb-2" id="next-shape"></div>
 
                 <!-- Player Score -->
-                <h3 class="text-[1.25rem] text-c-title font-semibold mb-2" id="player-score">Score: 0</h3>
+                <h3 class="text-[1.25rem] text-c-title font-semibold mb-2">Score
+                    <span class="block border border-solid border-c-title px-2 mt-2" id="player-score">0</span>
+                </h3>
+
+                <!-- Lines -->
+                <h3 class="text-[1.25rem] text-c-title font-semibold mb-2">Lines
+                    <span class="block border border-solid border-c-title px-2 mt-2" id="lines-cleared">0</span>
+                </h3>
 
                 <!-- Level -->
-                <h3 class="text-[1.25rem] text-c-title font-semibold mb-2">Level: 0</h3>
+                <h3 class="text-[1.25rem] text-c-title font-semibold mb-2">Level
+                    <span class="block border border-solid border-c-title px-2 mt-2" id="levels-cleared">0</span>
+                </h3>
 
-                <!-- Play/Pause Button -->
-                <button class="mt-4" id="start-btn">
-                    <img class="w-[40px] h-auto" src="./src/img/pause.png" id="btn-img" alt="Btn Icon">
-                </button>
+                
             </div>
         </div>
 
         <!-- Control Area -->
-        <div class="w-[200px] flex justify-between mt-6">
+        <div class="w-[200px] mx-auto flex justify-between mt-6">
             <button type="button" id="left">
                 <img class="w-[40px]" src="./src/img/left.png" alt="left control img">
             </button>

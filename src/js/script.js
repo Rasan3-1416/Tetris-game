@@ -1,6 +1,8 @@
 const rootView = document.getElementById('root-view')
 const nextShape = document.getElementById('next-shape')
 const playerScore = document.getElementById('player-score')
+const linesCleared = document.getElementById('lines-cleared')
+const levelsCleared = document.getElementById('levels-cleared')
 const startBtn = document.getElementById('start-btn')
 const btnImg = document.getElementById('btn-img')
 
@@ -14,8 +16,11 @@ const rotateBtn = document.getElementById('rotate')
 
 
 // Core Value 
+let parallelDirLog = []
 let rowContainer = []
 let scoreCount = 0
+let linesCount = 0
+let levelCount = 0
 const width = 10
 
 // Creats 200 divs inside the root-view div
@@ -39,7 +44,7 @@ for(let i = 0; i < 200; i+= width) {
 }
 
 // Creats 16 divs inside the next-shape div
-for(let i = 0; i < 16; i++) {
+for(let i = 0; i < 12; i++) {
     const nextShapeblock = document.createElement('div')
     nextShapeblock.classList.add('block-div')
     nextShape.appendChild(nextShapeblock)
@@ -52,8 +57,6 @@ for(let i = 0; i < 16; i++) {
 //     count++
 // }
 
-
-let continueGame = true
 
 
 // Each shape with there rotation
@@ -151,6 +154,7 @@ function freezeShape() {
         currentShape.forEach(index => {
             blocks[currentPosition + index].classList.add('freeze-div')
         })
+        console.log(parallelDirLog)
 
         // Start new shape
         random = Math.floor(Math.random()*theShapes.length)
@@ -165,24 +169,53 @@ function freezeShape() {
 }
 
 // Shape control function
-function control(e) {
-    if(e.keyCode === 37) {
-        moveLeft()
-    }else if(e.keyCode === 39) {
-        moveRight()
-    }else if(e.keyCode === 40) {
-        moveDown()
-    }else if(e.keyCode === 32 || e.keyCode === 13) {
-        rotateShape()
+function control(ev) {
+    if(gameExecution){
+        if(ev.keyCode === 37) {
+            moveLeft()
+        }else if(ev.keyCode === 39) {
+            moveRight()
+        }else if(ev.keyCode === 40) {
+            moveDown()
+        }else if(ev.keyCode === 32) {
+            rotateShape()
+        }
     }
 }
 window.addEventListener('keydown', control)
 
-// Image control Assigning function
-leftBtn.addEventListener('click', moveLeft)
-rightBtn.addEventListener('click', moveRight)
-downBtn.addEventListener('click', moveDown)
-rotateBtn.addEventListener('click', rotateShape)
+// ----
+function logCollector (ev) {
+    if(ev.keyCode === 37 || ev.keyCode === 39){
+        parallelDirLog.push(ev.keyCode)
+    }
+}
+document.body.addEventListener('keydown', logCollector)
+// ----
+
+// Image control Assigning function and putting keyboard keyCode values to the parallel direction log
+leftBtn.addEventListener('click', () => {
+    if(gameExecution){
+        moveLeft()
+        parallelDirLog.push(37)
+    }
+})
+rightBtn.addEventListener('click', () => {
+    if(gameExecution){
+        moveRight()
+        parallelDirLog.push(39)
+    }
+})
+downBtn.addEventListener('click', () => {
+    if(gameExecution){
+        moveDown()
+    }
+})
+rotateBtn.addEventListener('click', () => {
+    if(gameExecution){
+        rotateShape()
+    }
+})
 
 
 // shape left move function
@@ -237,6 +270,11 @@ function gameFlow() {
     }
 }
 startBtn.addEventListener('click', gameFlow)
+document.body.addEventListener('keypress', (ev) => {
+    if(ev.keyCode === 13) {
+        gameFlow()
+    }
+})
 
 // Game over function
 function gameOver() {
@@ -251,8 +289,11 @@ function gameOver() {
 function updateScore() {
     for(let i = 0; i < rowContainer.length; i++){
         if(rowContainer[i].every(index => blocks[index].classList.contains('freeze-div'))){
-            scoreCount++
-            playerScore.textContent = `Score: ${scoreCount}`
+            scoreCount += 10
+            playerScore.textContent = scoreCount
+            linesCount++
+            linesCleared.textContent = linesCount
+            
 
             // Remove the filled row
             rowContainer[i].forEach(index => {
